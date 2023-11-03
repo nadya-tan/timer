@@ -1,23 +1,71 @@
-<p id="timer"></p>
+<head>
+  <title>✈ ❤</title>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style type="text/tailwindcss">
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    body {
+        background-image: url("https://res.cloudinary.com/roundglass/image/upload/w_1104,h_736,c_fill/q_auto:best,f_auto/v1612427407/roundglass/Bigfin_reef_squid_Sepioteuthis_lessoniana_14387776366-Rickard-Zerpe-CC-BY-SA-2.0_kr63jj.jpg");
+        background-position: 30%;
+        background-size: cover;
+        backdrop-filter: blur(3px);
+    }   
+  </style>
+</head>
+
+<body class="h-screen w-screen flex flex-col justify-center items-center gap-y-4">
+  <div>✈︎ ❤</div>
+  <div id="timer" class="flex flex-row gap-x-2 text-2xl font-semibold">
+    <p id="days0" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <p id="days1" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <p id="days2" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <span class="p-4 text-gray-200">:</span>
+    <p id="hours0" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <p id="hours1" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <span class="p-4 text-gray-200">:</span>
+    <p id="minutes0" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <p id="minutes1" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <span class="p-4 text-gray-200">:</span>
+    <p id="seconds0" class="bg-gray-200 p-4 rounded-lg">0</p>
+    <p id="seconds1" class="bg-gray-200 p-4 rounded-lg">0</p>
+  </div>
+</body>
 
 <script>
-    var endDate = new Date("March 30, 2024 02:00:00").getTime();
+  var endDate = new Date("March 30, 2024 02:00:00 GMT+08").getTime();
 
-    var x = setInterval(function() {
-        var now = new Date().getTime();
-        var gap = endDate - now;
+  var x = setInterval(function () {
+    var now = new Date().getTime();
+    var gap = endDate - now;
 
-        var day = Math.floor(gap / (1000 * 60 * 60 * 24));
-        var hour = Math.floor((gap % (1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-        var minute = Math.floor((gap % (1000 * 60 * 60))/(1000 * 60 ));
-        var second = Math.floor((gap % (1000 * 60))/1000);
+    var day = Math.floor(gap / (1000 * 60 * 60 * 24));
+    var hour = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minute = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+    var second = Math.floor((gap % (1000 * 60)) / 1000);
 
-        document.getElementById("timer").innerHTML = day + " days " + hour + " hours " + minute + " minutes " + second + " seconds ";
+    document.getElementById("days0").innerHTML = Math.floor(day / 100);
+    document.getElementById("days1").innerHTML = Math.floor((day % 100) / 10);
+    document.getElementById("days2").innerHTML = Math.floor(day % 10);
 
-        if(gap <= 0) {
-            clearInterval(x);
-            document.getElementById("timer").innerHTML = "OMW";
-        }
+    document.getElementById("hours0").innerHTML = Math.floor(hour / 10);
+    document.getElementById("hours1").innerHTML = Math.floor(hour % 10);
 
-    }, 1000);
+    document.getElementById("minutes0").innerHTML = Math.floor(minute / 10);
+    document.getElementById("minutes1").innerHTML = Math.floor(minute % 10);
+
+    document.getElementById("seconds0").innerHTML = Math.floor(second / 10);
+    document.getElementById("seconds1").innerHTML = Math.floor(second % 10);
+
+    if (gap <= 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "OMW";
+    }
+  }, 1000);
 </script>
