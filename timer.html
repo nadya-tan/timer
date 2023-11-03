@@ -1,0 +1,23 @@
+<p id="timer"></p>
+
+<script>
+    var endDate = new Date("March 30, 2024 02:00:00").getTime();
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var gap = endDate - now;
+
+        var day = Math.floor(gap / (1000 * 60 * 60 * 24));
+        var hour = Math.floor((gap % (1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+        var minute = Math.floor((gap % (1000 * 60 * 60))/(1000 * 60 ));
+        var second = Math.floor((gap % (1000 * 60))/1000);
+
+        document.getElementById("timer").innerHTML = day + " days " + hour + " hours " + minute + " minutes " + second + " seconds ";
+
+        if(gap <= 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "OMW";
+        }
+
+    }, 1000);
+</script>
