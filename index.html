@@ -18,6 +18,37 @@
       backdrop-filter: blur(3px);
       font-family: monospace;
     }
+    input[type='range'] {
+      -webkit-appearance: none;
+
+    }
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      
+      appearance: none;
+      width: 23px;
+      height: 24px;
+      border: 0;
+        border-radius: 50%;
+      background-image: url('https://img.icons8.com/ios-filled/50/airplane-mode-on.png');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    input[type='range']::-moz-range-thumb {
+      width: 23px;
+      height: 24px;
+      border: 0;
+        border-radius: 50%;
+      background-image: url('https://img.icons8.com/ios-filled/50/airplane-mode-on.png');
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 
@@ -93,14 +124,18 @@
       0
     </p>
   </div>
+  <input id="progress" type="range" min="0" max="100" class="w-[75%] bg-gray-200 rounded-lg border-2 border-black  drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"/>
 </body>
 
 <script>
-  var endDate = new Date("March 30, 2024 02:00:00 GMT+08").getTime();
-
+  const endDate = new Date("March 30, 2024 02:00:00 GMT+08").getTime();
+  const startDate = new Date("November 1, 2023 02:00:00 GMT+08").getTime();
   var x = setInterval(function () {
     var now = new Date().getTime();
     var gap = endDate - now;
+
+    var progress = (1 -(gap/(endDate - startDate))) * 100
+    document.getElementById("progress").value = progress
 
     var day = Math.floor(gap / (1000 * 60 * 60 * 24));
     var hour = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
