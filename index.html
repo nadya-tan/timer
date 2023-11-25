@@ -158,16 +158,21 @@
     max="100"
     class="w-[75%] bg-gray-200 rounded-lg border-2 border-black drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]"
   />
+  <p class="text-gray-200 p-2 bg-black rounded-2xl" id="percentage"></p>
+  </input>
 </body>
 
 <script>
-  const endDate = new Date("March 30, 2024 02:00:00 GMT+08").getTime();
+  const endDate = new Date("March 29, 2024 21:00:00 GMT+08").getTime();
   const startDate = new Date("November 1, 2023 02:00:00 GMT+08").getTime();
   var x = setInterval(function () {
     var now = new Date().getTime();
     var gap = endDate - now;
 
     var progress = (1 - gap / (endDate - startDate)) * 100;
+    // show progress to 6 decimal places
+    document.getElementById("percentage").innerHTML =
+      progress.toFixed(6) + "%";
     document.getElementById("progress").value = progress;
 
     var day = Math.floor(gap / (1000 * 60 * 60 * 24));
@@ -192,7 +197,7 @@
       clearInterval(x);
       document.getElementById("timer").innerHTML = "OMW";
     }
-  }, 1000);
+  }, 250);
 </script>
 
 <script type="module">
@@ -214,6 +219,7 @@
     camera.right = window.innerWidth / 2;
     camera.top = window.innerHeight / 2;
     camera.bottom = window.innerHeight / -2;
+    camera.updateProjectionMatrix();
   });
 
   // add click listener and variable for click and click position
