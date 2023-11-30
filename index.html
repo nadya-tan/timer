@@ -343,17 +343,17 @@
       if (allSquidsSpeed == 0) {
         allSquidsSpeed = window.innerWidth / 1000;
       } else {
-        allSquidsSpeed *= 0.99;
+        allSquidsSpeed *= 0.995;
         if (allSquidsSpeed < 0.1) {
           allSquidsSpeed = 0;
         }
       }
 
       if (allSquidsSpeed > (window.innerWidth / 1000) * 0.8)
-        squidTexture.offset.x = 2 / 3;
+        squidTexture.offset.x = 2 / 3 - 0.05;
       else if (allSquidsSpeed > (window.innerWidth / 1000) * 0.4)
         squidTexture.offset.x = 1 / 3;
-      else squidTexture.offset.x = 3 / 3;
+      else squidTexture.offset.x = 3 / 3 + 0.05;
 
       // based on the speed, set the texture offset
     }
